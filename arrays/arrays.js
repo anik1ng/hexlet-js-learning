@@ -201,3 +201,57 @@ export default (arrayOne, arrayTwo) => {
 
   return result;
 };
+
+
+// Реализуйте и экспортируйте функцию getMax(), которая ищет в массиве максимальное значение и возвращает его:
+
+// import { getMax } from '../arrays.js';
+ 
+// // Для пустого массива возвращается null
+// getMax([]); // null
+// getMax([1, 10, 8]); // 10
+
+export const getMax = (array) => {
+  if (array.length === 0) {
+    return null;
+  }
+
+  const [first, ...rest] = array;
+  let max = first;
+
+  for (const el of rest) {
+    max = el > max ? el : max;
+  }
+
+  return max;
+};
+
+
+// Реализуйте и экспортируйте функцию flatten(). Эта функция принимает на вход массив и выпрямляет его: если элементами массива являются массивы, 
+// то flatten сводит всё к одному массиву, раскрывая один уровень вложенности.
+
+// В js эта функция реализована как метод flat() у массивов. Его использовать нельзя.
+
+// import { flatten } from '../arrays.js';
+ 
+// // Для пустого массива возвращается []
+// flatten([]); // []
+// flatten([1, [3, 2], 9]); // [1, 3, 2, 9]
+// flatten([1, [[2], [3]], [9]]); // [1, [2], [3], 9]
+export const flatten = (array) => {
+  if (array.length === 0) {
+    return array;
+  }
+
+  const result = [];
+
+  for (const el of array) {
+    if (Array.isArray(el)) {
+      result.push(...el);
+    } else {
+      result.push(el);
+    }
+  }
+
+  return result;
+};
