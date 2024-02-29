@@ -137,3 +137,39 @@ const getTotalAmount = (array, currency) => {
 };
 
 export default getTotalAmount;
+
+
+// Реализуйте и экспортируйте по умолчанию функцию, принимающую на вход два массива и возвращающую количество общих уникальных значений в обоих массивах.
+
+// Примеры:
+// // Общие уникальные элементы: 1, 3, 2
+// getSameCount([1, 3, 2, 2], [3, 1, 1, 2, 5]); // 3
+ 
+// // Общие уникальные элементы: 4
+// getSameCount([1, 4, 4], [4, 8, 4]); // 1
+ 
+// // Общие уникальные элементы: 1, 10
+// getSameCount([1, 10, 3], [10, 100, 35, 1]); // 2
+ 
+// // Нет элементов
+// getSameCount([], []); // 0
+
+import _ from 'lodash';
+
+const getSameCount = (arrayOne, arrayTwo) => {
+  let count = 0;
+  const uniqArrayOne = _.uniq(arrayOne);
+  const uniqArrayTwo = _.uniq(arrayTwo);
+
+  for (const el of uniqArrayOne) {
+    for (const el2 of uniqArrayTwo) {
+      if (el === el2) {
+        count += 1;
+      }
+    }
+  }
+
+  return count;
+};
+
+export default getSameCount;
