@@ -173,3 +173,31 @@ const getSameCount = (arrayOne, arrayTwo) => {
 };
 
 export default getSameCount;
+
+
+// Реализуйте и экспортируйте по умолчанию функцию, которая принимает на вход два отсортированных массива и находит их пересечение. 
+// Пересечение двух массивов A и B — это массив только с теми элементами A и B, которые одновременно принадлежат обоим массивам, без дублей:
+
+// getIntersectionOfSortedArrays([10, 11, 24], [10, 13, 14, 18, 24, 30]); // [10, 24]
+// getIntersectionOfSortedArrays([10, 11, 24], [-2, 3, 4]); // []
+// getIntersectionOfSortedArrays([], [2]); // []
+
+export default (arrayOne, arrayTwo) => {
+  const result = [];
+
+  if (arrayOne.length === 0 || arrayTwo.length === 0) {
+    return result;
+  }
+
+  if (arrayOne.length > arrayTwo.length) {
+    [arrayOne, arrayTwo] = [arrayTwo, arrayOne];
+  }
+
+  for (const item of arrayOne) {
+    if (arrayTwo.includes(item) && !result.includes(item)) {
+      result.push(item);
+    }
+  }
+
+  return result;
+};
