@@ -121,3 +121,58 @@ export default (domain) => {
     name,
   };
 };
+
+
+// Реализуйте и экспортируйте по умолчанию функцию, которая считает количество слов в предложении, и возвращает объект. 
+// В объекте свойства — это слова (приведенные к нижнему регистру), а значения — это то, сколько раз слово встретилось в предложении. 
+// Слова в предложении могут находиться в разных регистрах. Перед подсчетом их нужно приводить в нижний регистр, чтобы не пропускались дубли.
+
+// import countWords from './words.js';
+
+// // Если предложение пустое, то возвращается пустой объект 
+// countWords('');
+// // {}
+
+// const text1 = 'one two three two ONE one wow';
+// countWords(text1);
+// // {
+// //   one: 3,
+// //   two: 2,
+// //   three: 1,
+// //   wow: 1,
+// // }
+
+// const text2 = 'another one sentence with strange Words words';
+// countWords(text2);
+// // {
+// //   another: 1,
+// //   one: 1,
+// //   sentence: 1,
+// //   with: 1,
+// //   strange: 1,
+// //   words: 2,
+// // }
+// Подсказки
+// Для формирования массива слов поможет функция _.words
+// toLowerCase – приведение к нижнему регистру
+
+import _ from 'lodash';
+
+export default (text) => {
+  if (_.isEmpty(text)) {
+    return {};
+  }
+
+  const words = _.words(text.toLowerCase());
+  const wordCounts = {};
+
+  for (const word of words) {
+    if (!wordCounts[word]) {
+      wordCounts[word] = 1;
+    } else {
+      wordCounts[word] += 1;
+    }
+  }
+
+  return wordCounts;
+};
